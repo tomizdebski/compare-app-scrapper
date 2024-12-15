@@ -1,7 +1,7 @@
 // app/scrapers/ebayScraper.ts
 
 import axios from 'axios';
-import cheerio from 'cheerio';
+import * as cheerio from 'cheerio';
 
 export interface Product {
   title: string;
