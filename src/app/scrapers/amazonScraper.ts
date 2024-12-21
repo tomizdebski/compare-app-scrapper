@@ -1,7 +1,7 @@
 // app/scrapers/amazonScraper.ts
 
 import puppeteer from 'puppeteer-extra';
-import StealthPlugin from 'puppeteer-extra-plugin-stealth';
+//import StealthPlugin from 'puppeteer-extra-plugin-stealth';
 
 export interface Product {
   title: string;
@@ -10,7 +10,7 @@ export interface Product {
 }
 
 // Użycie pluginu stealth, aby uniknąć detekcji botów
-puppeteer.use(StealthPlugin());
+//puppeteer.use(StealthPlugin());
 
 export async function scrapeAmazon(query: string): Promise<Product[]> {
   const searchUrl = `https://www.amazon.pl/s?k=${encodeURIComponent(query)}`;

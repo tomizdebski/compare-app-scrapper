@@ -2,12 +2,12 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { scrapeEbay, Product as EbayProduct } from '../../scrapers/ebayScraper';
-import { scrapeAllegro, Product as AllegroProduct } from '../../scrapers/allegroScraper';
-//import { scrapeAmazon, Product as AmazonProduct } from '@/app/scrapers/amazonScraper';
+//import { scrapeAllegro, Product as AllegroProduct } from '../../scrapers/allegroScraper';
+import { scrapeAmazon, Product as AmazonProduct } from '@/app/scrapers/amazonScraper';
 
 interface SearchResponse {
   ebay: EbayProduct[];
-  allegro: AllegroProduct[];
+  amazon: AmazonProduct[];
   error?: string;
 }
 
@@ -29,14 +29,14 @@ export async function GET(req: NextRequest) {
   }
 
   try {
-    const [ebayResults, allegroResults] = await Promise.all([
+    const [ebayResults, amazonResults] = await Promise.all([
       scrapeEbay(query),
-      scrapeAllegro(query),
+      scrapeAmazon(query),
     ]);
 
     const responseData: SearchResponse = {
       ebay: ebayResults,
-      allegro: allegroResults
+      amazon: amazonResults
     };
 
     // Aktualizacja cache

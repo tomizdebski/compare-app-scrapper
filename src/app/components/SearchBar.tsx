@@ -25,7 +25,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         placeholder="Wprowadź nazwę produktu"
-        className="flex-grow px-4 py-2 border rounded-l-md"
+        className="flex-grow px-4 py-2 border rounded-l-md text-black"
       />
       <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded-r-md">
         Szukaj

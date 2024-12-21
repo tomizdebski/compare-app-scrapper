@@ -15,13 +15,13 @@ interface Product {
 
 interface SearchResponse {
   ebay: Product[];
-  allegro: Product[];
+  amazon: Product[];
   error?: string;
 }
 
 const Home: React.FC = () => {
   const [ebay, setEbay] = useState<Product[]>([]);
-  const [allegro, setAllegro] = useState<Product[]>([]);
+  const [amazon, setAmazon] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -29,7 +29,7 @@ const Home: React.FC = () => {
     setLoading(true);
     setError(null);
     setEbay([]);
-    setAllegro([]);
+    setAmazon([]);
 
     try {
       const response = await axios.get<SearchResponse>("/api/searchProducts", {
@@ -38,7 +38,7 @@ const Home: React.FC = () => {
 
       if (response.status === 200) {
         setEbay(response.data.ebay);
-        setAllegro(response.data.allegro);
+        setAmazon(response.data.amazon);
       } else {
         setError(response.data.error || "Błąd podczas wyszukiwania");
       }
@@ -54,14 +54,14 @@ const Home: React.FC = () => {
   };
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto p-4 ">
       <h1 className="text-3xl font-bold mb-4">
-        Porównywarka Ofert eBay i Allegro
+        Porównywarka Ofert eBay i Amazon
       </h1>
       <SearchBar onSearch={handleSearch} />
       {loading && <p>Ładowanie...</p>}
       {error && <p className="text-red-600">{error}</p>}
-      <ProductList ebay={ebay} allegro={allegro}/>
+      <ProductList ebay={ebay} amazon={amazon}/>
     </div>
   );
 };
