@@ -1,5 +1,3 @@
-// app/scrapers/ebayScraper.ts
-
 import axios from 'axios';
 import * as cheerio from 'cheerio';
 
@@ -25,6 +23,11 @@ export async function scrapeEbay(query: string): Promise<Product[]> {
       const title = $(element).find('.s-item__title').text().trim();
       const price = $(element).find('.s-item__price').text().trim();
       const link = $(element).find('.s-item__link').attr('href') || '';
+
+      // Ignorowanie niechcianych elementów
+      if (title.toLowerCase().includes('shop on ebay')) {
+        return; // Pomija ten element
+      }
 
       if (title && price && link) {
         products.push({ title, price, link });

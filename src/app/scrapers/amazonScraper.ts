@@ -73,7 +73,7 @@ export async function scrapeAmazon(query: string): Promise<Product[]> {
         const wholePriceElement = item.querySelector('span.a-price-whole');
         const fractionPriceElement = item.querySelector('span.a-price-fraction');
         const price = wholePriceElement && fractionPriceElement
-          ? `${wholePriceElement.textContent?.trim() || ''}.${fractionPriceElement.textContent?.trim() || ''} zł`
+          ? `${wholePriceElement.textContent?.trim() || ''}${fractionPriceElement.textContent?.trim() || ''} zł`
           : 'Brak ceny';
     
         if (title && link) {

@@ -64,11 +64,12 @@ const MyProducts: React.FC = () => {
       {products.length === 0 ? (
         <p>Brak produktów w bazie danych.</p>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 ">
           {products.map((product) => (
-            <div key={product.id} className="p-4 border rounded-md shadow">
+            <div key={product.id} className="p-4 border rounded-md shadow flex flex-col justify-between">
               <h2 className="text-lg font-semibold mb-2">{product.title}</h2>
               <p className="text-gray-700 mb-2">Cena: {product.price}</p>
+              <div className="flex flex-col">
               <a
                 href={product.link}
                 target="_blank"
@@ -83,6 +84,7 @@ const MyProducts: React.FC = () => {
               >
                 Usuń produkt
               </button>
+              </div>
             </div>
           ))}
         </div>
