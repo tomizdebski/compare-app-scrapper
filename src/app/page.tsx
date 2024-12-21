@@ -61,7 +61,7 @@ const Home: React.FC = () => {
       <SearchBar onSearch={handleSearch} />
       {loading && <p>Ładowanie...</p>}
       {error && <p className="text-red-600">{error}</p>}
-      <ProductList ebay={ebay} allegro={allegro} />
+      <ProductList ebay={ebay} allegro={allegro}/>
     </div>
   );
 };

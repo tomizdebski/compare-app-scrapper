@@ -13,7 +13,8 @@ export interface Product {
 puppeteer.use(StealthPlugin());
 
 export async function scrapeOLX(query: string): Promise<Product[]> {
-  const searchUrl = `${process.env.OLX_SEARCH_URL}${encodeURIComponent(query)}/`;
+  //const searchUrl = `${process.env.OLX_SEARCH_URL}${encodeURIComponent(query)}/`;
+  const searchUrl = `https://www.olx.pl/oferty/q-${encodeURIComponent(query)}`;
 
   try {
     const browser = await puppeteer.launch({
@@ -35,7 +36,7 @@ export async function scrapeOLX(query: string): Promise<Product[]> {
     await page.goto(searchUrl, { waitUntil: 'networkidle2' });
 
     // Poczekaj, aż elementy ofert będą widoczne
-    await page.waitForSelector('div.offer-wrapper', { timeout: 10000 });
+    await page.waitForSelector('div.listing-grid-container', { timeout: 10000 });
 
     const products: Product[] = await page.evaluate(() => {
       const items = document.querySelectorAll('div.offer-wrapper');

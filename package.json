@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "test:amazon": "ts-node --project tsconfig.scripts.json src/app/scrapers/testAmazonScraper.ts",
+    "test:ebay": "ts-node --project tsconfig.scripts.json src/app/scrapers/testEbayScraper.ts",
+    "test:olx": "ts-node --project tsconfig.scripts.json src/app/scrapers/testOlxScraper.ts",
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
@@ -11,6 +14,7 @@
   "dependencies": {
     "axios": "^1.7.9",
     "cheerio": "^1.0.0",
+    "dotenv": "^16.4.7",
     "next": "15.1.0",
     "puppeteer": "^23.10.4",
     "puppeteer-extra": "^3.3.6",
@@ -29,6 +33,7 @@
     "eslint-config-next": "15.1.0",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
+    "ts-node": "^10.9.2",
     "typescript": "^5"
   }
 }

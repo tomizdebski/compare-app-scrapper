@@ -1,8 +1,9 @@
 // app/api/searchProducts/route.ts
 
 import { NextRequest, NextResponse } from 'next/server';
-import { scrapeEbay, Product as EbayProduct } from '../../scrappers/ebayScraper';
-import { scrapeAllegro, Product as AllegroProduct } from '../../scrappers/allegroScraper';
+import { scrapeEbay, Product as EbayProduct } from '../../scrapers/ebayScraper';
+import { scrapeAllegro, Product as AllegroProduct } from '../../scrapers/allegroScraper';
+//import { scrapeAmazon, Product as AmazonProduct } from '@/app/scrapers/amazonScraper';
 
 interface SearchResponse {
   ebay: EbayProduct[];
@@ -35,7 +36,7 @@ export async function GET(req: NextRequest) {
 
     const responseData: SearchResponse = {
       ebay: ebayResults,
-      allegro: allegroResults,
+      allegro: allegroResults
     };
 
     // Aktualizacja cache
