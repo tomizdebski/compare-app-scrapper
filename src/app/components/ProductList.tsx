@@ -14,10 +14,27 @@ interface ProductListProps {
 }
 
 const ProductList: React.FC<ProductListProps> = ({ ebay, amazon }) => {
+  const handleAddToDatabase = async (product: Product) => {
+    try {
+      const response = await fetch('/api/addProduct', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(product),
+      });
 
-  const handleAddToDatabase = (product: Product) => {
-    // Mock function: Replace with actual API call to add product to the database
-    console.log('Adding product to database:', product);
+      if (!response.ok) {
+        throw new Error('Nie udało się dodać produktu');
+      }
+
+      const data = await response.json();
+      console.log('Produkt dodany:', data);
+      alert('Produkt został dodany do bazy!');
+    } catch (error) {
+      console.error('Błąd podczas dodawania produktu:', error);
+      alert('Nie udało się dodać produktu.');
+    }
   };
 
   return (
@@ -28,7 +45,7 @@ const ProductList: React.FC<ProductListProps> = ({ ebay, amazon }) => {
           <p>Brak wyników.</p>
         ) : (
           ebay.map((product, index) => (
-            <div key={index} className="mb-4 p-4 border rounded-md bg-gray-300">
+            <div key={index} className="mb-4 p-4 border rounded-md">
               <a href={product.link} target="_blank" rel="noopener noreferrer" className="text-blue-600 font-semibold">
                 {product.title}
               </a>
@@ -49,7 +66,7 @@ const ProductList: React.FC<ProductListProps> = ({ ebay, amazon }) => {
           <p>Brak wyników.</p>
         ) : (
           amazon.map((product, index) => (
-            <div key={index} className="mb-4 p-4 border rounded-md bg-gray-200">
+            <div key={index} className="mb-4 p-4 border rounded-md">
               <a href={product.link} target="_blank" rel="noopener noreferrer" className="text-blue-600 font-semibold">
                 {product.title}
               </a>
@@ -69,3 +86,4 @@ const ProductList: React.FC<ProductListProps> = ({ ebay, amazon }) => {
 };
 
 export default ProductList;
+
