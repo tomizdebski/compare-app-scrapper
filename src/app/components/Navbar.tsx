@@ -19,7 +19,7 @@ const NAV_ITEMS: Array<NavItem> = [
 export default function Navbar() {
   const [navbar, setNavbar] = useState(false);
   return (
-    <header className="container w-full mx-auto  shadow ">
+    <header className="container w-full mx-auto text-white sticky bg-[#0a0a0a] top-0 z-50 shadow-md">
       <div className="flex flex-wrap items-center justify-between py-3 md:py-5">
         <Link href="/">
           <div className="flex items-center space-x-2">
