@@ -45,7 +45,7 @@ const ProductList: React.FC<ProductListProps> = ({ ebay, amazon }) => {
           <p>Brak wyników.</p>
         ) : (
           ebay.map((product, index) => (
-            <div key={index} className="mb-4 p-4 border rounded-md">
+            <div key={index} className="mb-4 p-4 border rounded-md bg-slate-200">
               <a href={product.link} target="_blank" rel="noopener noreferrer" className="text-blue-600 font-semibold">
                 {product.title}
               </a>
@@ -66,7 +66,7 @@ const ProductList: React.FC<ProductListProps> = ({ ebay, amazon }) => {
           <p>Brak wyników.</p>
         ) : (
           amazon.map((product, index) => (
-            <div key={index} className="mb-4 p-4 border rounded-md">
+            <div key={index} className="mb-4 p-4 border rounded-md bg-gray-100">
               <a href={product.link} target="_blank" rel="noopener noreferrer" className="text-blue-600 font-semibold">
                 {product.title}
               </a>
